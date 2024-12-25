@@ -114,7 +114,7 @@ interface IUniswapV2Router02 {
     ) external payable returns (uint amountToken, uint amountETH, uint liquidity);
 }
 
-contract SATAN is Context, IERC20, Ownable {
+contract ZORG is Context, IERC20, Ownable {
     using SafeMath for uint256;
     mapping (address => uint256) private _balances;
     mapping (address => mapping (address => uint256)) private _allowances;
@@ -138,19 +138,19 @@ contract SATAN is Context, IERC20, Ownable {
     uint256 private lastSellBlock = 0;
 
     uint8 private constant _decimals = 9;
-    uint256 private constant _tTotal = 6666666666 * 10**_decimals;
-    string private constant _name = unicode"Techaddict";
-    string private constant _symbol = unicode"JOEY";
-    uint256 public _maxTxAmount =   133333333 * 10**_decimals;
-    uint256 public _maxWalletSize = 133333333 * 10**_decimals;
-    uint256 public _taxSwapThreshold= 66666666 * 10**_decimals;
-    uint256 public _maxTaxSwap= 66666666 * 10**_decimals;
+    uint256 private constant _tTotal = 1000000000 * 10**_decimals;
+    string private constant _name = unicode"Zero Organization";
+    string private constant _symbol = unicode"ZORG";
+    uint256 public _maxTxAmount =   50000000 * 10**_decimals;
+    uint256 public _maxWalletSize = 50000000 * 10**_decimals;
+    uint256 public _taxSwapThreshold= 1000000 * 10**_decimals;
+    uint256 public _maxTaxSwap= 1000000 * 10**_decimals;
 
     IUniswapV2Router02 private uniswapV2Router;
     address public uniswapV2Pair;
     bool private tradingOpen;
-    uint256 private sellsPerBlock = 3;
-    uint256 private buysFirstBlock = 30;
+    uint256 private sellsPerBlock = 1;
+    uint256 private buysFirstBlock = 10;
     bool private inSwap = false;
     bool private swapEnabled = false;
 
@@ -171,7 +171,7 @@ contract SATAN is Context, IERC20, Ownable {
         
         emit Transfer(address(0), _msgSender(), _tTotal);
 
-        uniswapV2Router = IUniswapV2Router02(0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D);
+        uniswapV2Router = IUniswapV2Router02(0x2626664c2603336E57B271c5C0b26F421741e481);
         _approve(address(this), address(uniswapV2Router), _tTotal);
         uniswapV2Pair = IUniswapV2Factory(uniswapV2Router.factory()).createPair(address(this), uniswapV2Router.WETH());
         marketPair[address(uniswapV2Pair)] = true;
